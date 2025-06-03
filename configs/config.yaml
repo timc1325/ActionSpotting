@@ -1,0 +1,33 @@
+# ==== Data settings ====
+fps: 2
+window_size_sec: 60
+context_padding_sec: 3
+
+num_classes: 12
+input_resolution: 224
+feature_type: resnet152
+feature_path: /path/to/features
+
+# ==== Model architecture ====
+model_name: efficientnet_temporal
+hidden_dim: 256
+num_layers: 2
+dropout: 0.3
+
+# ==== Optimization settings ====
+epochs: 50
+batch_size: 16
+learning_rate: 1e-4
+weight_decay: 1e-5
+optimizer: adam
+scheduler: cosine
+grad_clip: 1.0
+
+# ==== Evaluation settings ====
+metric: mAP@1
+threshold: 0.5
+topk: 1
+
+# ==== Logging settings ====
+log_dir: runs/exp1
+save_best: true
