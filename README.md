@@ -27,6 +27,8 @@ Fine-tune a pretrained spatiotemporal network using lightweight augmentations an
 ---
 
 ## 🗂️ Project Structure
+
+```
 project-root/
 ├── src/                 # Core model and components
 │   ├── model.py         # 2D+3D ActionSpottingModel
@@ -39,6 +41,7 @@ project-root/
 ├── visualize/           # Visualization
 ├── requirements.txt     # Python dependencies
 └── README.md            # You're here
+```
 
 ---
 
