@@ -1,0 +1,12 @@
+torch>=2.0.0
+torchvision>=0.15.0
+torchaudio>=2.0.0
+tqdm
+numpy
+scipy
+scikit-learn
+pandas
+matplotlib
+kornia
+opencv-python
+soccer-net

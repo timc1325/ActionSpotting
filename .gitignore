@@ -1,0 +1,14 @@
+scratch*
+# Ignore video files recursively
+**/*.mkv
+**/*.mp4
+**/*.avi
+**/*.mov
+**/*.webm
+**/*.flv
+**/*.m4v
+**/*.wmv
+**/*.ts
+**/*.mpeg
+**/*.mpg
+**/*.3gp
