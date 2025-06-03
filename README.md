@@ -1,6 +1,6 @@
 # ⚽ Ball Action Spotting with SoccerNet 2024
 
-This project explores dense temporal event detection in soccer videos, focusing on the **Ball Action Spotting** task introduced in the SoccerNet 2024 challenge. The goal is to automatically detect fine-grained ball-related actions (e.g., pass, shot, tackle) in untrimmed broadcast videos using deep spatiotemporal models.
+This project explores dense temporal event detection in soccer videos, focusing on the **Ball Action Spotting** task introduced in the [SoccerNet 2024 challenge](https://www.soccer-net.org/challenges/2024). The goal is to automatically detect fine-grained ball-related actions (e.g., pass, shot, tackle) in untrimmed broadcast videos using deep spatiotemporal models.
 
 ---
 
@@ -27,16 +27,19 @@ Fine-tune a pretrained spatiotemporal network using lightweight augmentations an
 ---
 
 ## 🗂️ Project Structure
-├── src/ # Core model and components
-│ ├── model.py # 2D+3D ActionSpottingModel
-│ └── utils.py # Logger, losses, etc.
-├── train.py # Fine-tuning script
-├── evaluate.py # Evaluation + mAP computation
-├── configs/ # YAML configs for hyperparameters
-├── data/ # Preprocessed features, labels
-├── results/ # Predictions and logs
-├── requirements.txt # Python dependencies
-└── README.md # You're here
+project-root/
+├── src/                 # Core model and components
+│   ├── model.py         # 2D+3D ActionSpottingModel
+│   └── utils.py         # Logger, losses, etc.
+├── train.py             # Fine-tuning script
+├── evaluate.py          # Evaluation + mAP computation
+├── prepare_data.py      # Download and extract ball spotting dataset
+├── configs/             # YAML configs for hyperparameters
+├── data/                # Preprocessed features, labels
+├── visualize/           # Visualization
+├── requirements.txt     # Python dependencies
+└── README.md            # You're here
+
 ---
 
 ## 🚀 Quick Start
