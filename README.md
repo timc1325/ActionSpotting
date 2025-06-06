@@ -37,7 +37,7 @@ project-root/
 ├── evaluate.py          # Evaluation + mAP computation
 ├── prepare_data.py      # Download and extract ball spotting dataset
 ├── configs/             # YAML configs for hyperparameters
-├── data/                # Preprocessed features, labels
+├── data/                # Raw Video 224p, 720p, labels 
 ├── visualize/           # Visualization
 ├── requirements.txt     # Python dependencies
 └── README.md            # You're here
