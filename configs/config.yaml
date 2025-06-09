@@ -1,33 +1,70 @@
-# ==== Data settings ====
-fps: 2
-window_size_sec: 60
-context_padding_sec: 3
+# config.yaml
 
-num_classes: 12
-input_resolution: 224
-feature_type: resnet152
-feature_path: /path/to/features
+model:
+  name: "TemporalConvSpotting"
+  backbone:
+    type: "resnet18"
+    pretrained: true
+    freeze_after_epoch: 10
+    grayscale_input: false  # grayscale was not used in preprocessing
+  temporal_decoder:
+    type: "stacked_1d_conv"
+    depth: 3
+    kernel_size: 5
+    dilation: [1, 2, 4]
+    dropout: 0.3
+    pooling: "attention"
+    attention_heads: 4
+    channels: 512
+    norm: "batch"
 
-# ==== Model architecture ====
-model_name: efficientnet_temporal
-hidden_dim: 256
-num_layers: 2
-dropout: 0.3
+training:
+  loss:
+    type: "focal"
+    gamma: 1.2
+    alpha: "inverse_freq"  # computed per class
+  optimizer:
+    type: "adamw"
+    lr: 1e-4
+    weight_decay: 0.01
+  scheduler:
+    type: "cosine"
+    warmup_epochs: 6
+  epochs: 25
+  batch_size: 4
+  max_samples_per_epoch: 6000
+  freeze_backbone_after: 10
 
-# ==== Optimization settings ====
-epochs: 50
-batch_size: 16
-learning_rate: 1e-4
-weight_decay: 1e-5
-optimizer: adam
-scheduler: cosine
-grad_clip: 1.0
+augmentation:
+  temporal_jitter: true
+  jitter_range: [-1, 1]
+  horizontal_flip: true
+  motion_simulation: false  # if not used, explicitly set
 
-# ==== Evaluation settings ====
-metric: mAP@1
-threshold: 0.5
-topk: 1
+dataloader:
+  framerate: 25
+  input_clip_length: 100
+  stride: 4
+  num_segments: 6  # TSN-inspired segmented sampling
 
-# ==== Logging settings ====
-log_dir: runs/exp1
-save_best: true
+evaluation:
+  metric: "tight"
+  tolerance: 1.0  # seconds
+  prediction_threshold: 0.2
+  peak_distance: 15  # in frames
+  gaussian_smoothing_sigma: 3
+  ensemble: false  # no ensemble voting used
+  save_predictions: true
+  save_path: "results/evaluate_results.json"
+
+dataset:
+  name: "SoccerNet-Ball"
+  annotation_file: "Labels-ball.json"
+  folds: [0, 1, 2]
+  use_all_folds: true
+  input_resolution: [796, 448]
+
+logging:
+  log_interval: 50
+  save_checkpoints: true
+  tensorboard: true
